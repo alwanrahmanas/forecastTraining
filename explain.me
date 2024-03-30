@@ -1,0 +1,12 @@
+N-BEATS Model Configuration:
+
+h=12: This parameter specifies the forecast horizon, i.e., the number of steps ahead to predict. In this case, it's set to 12, which might imply forecasting monthly data for 1 year ahead.
+input_size=24: This parameter defines the input size, which likely corresponds to the length of the input sequence considered for making predictions. With a forecast horizon of 12, an input size of 24 suggests that the model may use historical data from the previous 24 time steps (e.g., 24 months) to make predictions.
+loss = DistributionLoss(distribution='Normal', level=[80, 90]): Here, a distributional loss function is specified for training the model. The DistributionLoss allows the model to predict the distribution of the target variable, assuming a normal distribution, with specified quantile levels at 80% and 90%. This loss function is often used in probabilistic forecasting to capture the uncertainty in predictions.
+scaler_type='robust': This parameter specifies the type of scaler used for preprocessing the data. In this case, a robust scaler is chosen, which is less sensitive to outliers compared to standard scalers.
+dropout_prob_theta=0.5: Dropout is a regularization technique used to prevent overfitting. This parameter defines the dropout probability for the model's hidden layers.
+stat_exog_list=['airline1']: This parameter specifies any static exogenous variables (features) used by the model. Here, 'airline1' is likely one of the static features.
+futr_exog_list=['trend']: This parameter specifies any future exogenous variables (features) used by the model. 'Trend' could be a feature representing the trend component of the time series.
+max_steps=200: This parameter sets the maximum number of training steps (epochs) during model training.
+val_check_steps=10: During training, this parameter specifies how often to perform validation checks. In this case, a validation check is performed every 10 training steps.
+early_stop_patience_steps=2: This parameter defines the number of validation checks with no improvement after which training will be stopped early if the model doesn't improve.
